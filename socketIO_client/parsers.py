@@ -41,23 +41,16 @@ def encode_engineIO_content(engineIO_packets):
 def decode_engineIO_content(content):
     content_index = 0
     content_length = len(content)
-#    print 'my',content
     while content_index < content_length:
         try:
-#            print 'attempt to read leangth'
             content_index, packet_length = _read_packet_length2(
                 content, content_index)
-#            print 'my length',packet_length,content_index
         except IndexError:
-            print 'fucked'
             break
- #       print 'reading text'
         content_index, packet_text = _read_packet_text(
             content, content_index, packet_length)
-#        print 'packet is', packet_text
         engineIO_packet_type, engineIO_packet_data = parse_packet_text(
             packet_text)
-#        print engineIO_packet_type,engineIO_packet_data
         yield engineIO_packet_type, engineIO_packet_data
 
 
