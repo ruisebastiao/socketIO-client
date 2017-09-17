@@ -126,21 +126,21 @@ def _make_packet_prefix(packet):
     header_digits.append(255)
     return header_digits
 
+# extra function to support XHR1 style protocol
 def _read_packet_length2(content, content_index):
     packet_length_string = ''
     #print content,content_index
     while get_byte(content, content_index) != ord(':'):
-        print content,content_index
+        #print content,content_index
         byte = get_byte(content, content_index)
         packet_length_string += chr(byte)
-        print packet_length_string
+        #print packet_length_string
         content_index += 1
     content_index += 1
     return content_index, int(packet_length_string)    
 
 
 def _read_packet_length(content, content_index):
-    print 'fuck'
     while get_byte(content, content_index) != 0:
         content_index += 1
     content_index += 1
