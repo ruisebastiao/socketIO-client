@@ -27,6 +27,7 @@ setup(
     url='https://github.com/invisibleroads/socketIO-client',
     install_requires=[
         'requests>=2.7.0',
+        'invisibleroads-macros'
         'six',
         'websocket-client',
     ],
